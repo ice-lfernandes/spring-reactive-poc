@@ -1,6 +1,6 @@
 package br.com.ldf.springreactivepoc.api.controller;
 
-import br.com.ldf.springreactivepoc.api.dto.Response;
+import br.com.ldf.springreactivepoc.api.dto.response.Response;
 import br.com.ldf.springreactivepoc.service.MathService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

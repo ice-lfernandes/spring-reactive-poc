@@ -1,4 +1,4 @@
-package br.com.ldf.springreactivepoc.api.dto;
+package br.com.ldf.springreactivepoc.api.dto.request;
 
 import lombok.Data;
 

@@ -1,6 +1,6 @@
 package br.com.ldf.springreactivepoc.service;
 
-import br.com.ldf.springreactivepoc.api.dto.Response;
+import br.com.ldf.springreactivepoc.api.dto.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
