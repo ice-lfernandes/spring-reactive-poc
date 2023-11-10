@@ -1,6 +1,9 @@
 package br.com.ldf.springreactivepoc.router;
 
+import br.com.ldf.springreactivepoc.api.dto.error.InputValidationErrorResponse;
+import br.com.ldf.springreactivepoc.api.dto.request.MultiplyRequestDTO;
 import br.com.ldf.springreactivepoc.api.dto.response.Response;
+import br.com.ldf.springreactivepoc.exception.InputValidationException;
 import br.com.ldf.springreactivepoc.service.ReactiveMathService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -34,6 +37,21 @@ public class RequestHandler {
         return ServerResponse.ok()
                 .contentType(MediaType.TEXT_EVENT_STREAM)
                 .body(responseFlux, Response.class);
+    }
+
+    public Mono<ServerResponse> multiplyHandler(ServerRequest serverRequest) {
+        var body = serverRequest.bodyToMono(MultiplyRequestDTO.class);
+        Mono<Response> responseMono = reactiveMathService.multiply(body);
+        return ServerResponse.ok().body(responseMono, Response.class);
+    }
+
+    public Mono<ServerResponse> squareHandlerWithValidation(ServerRequest serverRequest) {
+        var input = Integer.parseInt(serverRequest.pathVariable("input"));
+        if (input < 10 || input > 20) {
+            return Mono.error(new InputValidationException((input)));
+        }
+        Mono<Response> responseMono = reactiveMathService.findSquare(input);
+        return ServerResponse.ok().body(responseMono, Response.class);
     }
 }
 
