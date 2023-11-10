@@ -22,6 +22,7 @@ public class RouterConfig {
                 // Expondo endpoint @GetMapping
                 .GET("router/square/{input}", requestHandler::squareHandler)
                 .GET("router/table/{input}", requestHandler::tableHandler)
+                .GET("router/table/{input}/stream", requestHandler::tableStreamHandler)
                 .build();
     }
 
